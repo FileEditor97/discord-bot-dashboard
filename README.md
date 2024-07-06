@@ -1,6 +1,4 @@
-> Deprecated
->
-> Please consider other alternatives. You may continuously use it but no support will be provided.
+> Fork of deprecated template by [Fuma Nama](https://github.com/fuma-nama/discord-bot-dashboard-next)
 
 ![banner](./document/preview-new.png)
 
