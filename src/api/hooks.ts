@@ -1,5 +1,5 @@
 import { CustomFeatures, CustomGuildInfo } from '../config/types';
-import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
+import { QueryClient, useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { UserInfo, getGuild, getGuilds, fetchUserInfo } from '@/api/discord';
 import {
   disableFeature,
@@ -85,10 +85,9 @@ export function useGuildInfoQuery(guild: string) {
 export function useFeatureQuery<K extends keyof CustomFeatures>(guild: string, feature: K) {
   const { status, session } = useSession();
 
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: Keys.features(guild, feature),
-    queryFn: () => getFeature(session!!, guild, feature),
-    enabled: status === 'authenticated'
+    queryFn: () => getFeature(session!!, guild, feature)
   });
 }
 
